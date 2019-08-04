@@ -8,7 +8,7 @@
         "48": "images/get_started48.png",
         "128": "images/get_started128.png"
     },
-    "permissions": [ { "fileSystem": ["directory"]}, "storage", "notifications"],
+    "permissions": [ { "fileSystem": ["write", "directory"]}, "storage", "notifications"],
     "app" :{
         "background": {
             "scripts": ["background.js"]

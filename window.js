@@ -50,9 +50,13 @@ showFolder.onclick = function(element) {
     console.log(data.chosenDir);
     if ( data.chosenDir ) {
       chrome.fileSystem.isRestorable(data.chosenDir, function(isRestorable) {
-        chrome.fileSystem.restoreEntry(data.chosenDir, function(entry) {
-          doEntry(entry);
-        });
+        if ( isRestorable ) {
+          chrome.fileSystem.restoreEntry(data.chosenDir, function(entry) {
+           doEntry(entry);
+          });
+        } else {
+          console.log("No restora")
+        }
       });
     }
   });
