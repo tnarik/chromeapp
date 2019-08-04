@@ -22,6 +22,22 @@ let doEntry = function(entry) {
     }, function(e){
       console.error(e);
     });
+
+
+    // Create a file inside
+    // This is based on code from https://stackoverflow.com/questions/38796878/create-file-within-in-the-user-selected-directory-using-chrome-filesystem
+    // Some additional informaton might be found here: https://www.html5rocks.com/en/tutorials/file/filesystem/
+    console.log("trying to create a file");
+    entry.getFile('new_file_test.txt', {create: true}, function(file) {
+      notify('ahaha!');
+      file.createWriter(function(writer) {
+        writer.onwrite = function(event) {
+          notify('done writing');
+        };
+
+        writer.write(new Blob(['test hello']));
+      });
+    });
   }
 };
 
@@ -55,7 +71,7 @@ showFolder.onclick = function(element) {
            doEntry(entry);
           });
         } else {
-          console.log("No restora")
+          console.log("No restorable")
         }
       });
     }
